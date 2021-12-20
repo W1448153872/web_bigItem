@@ -44,6 +44,8 @@ $(function() {
                 return layer.msg(res.message, { icon: 2 })
             }
             layer.msg('注册成功，请登录', { icon: 1, time: 1000 }, function() {
+                // 重置表单
+                $('#reg-form')[0].reset();
                 $('#go-login').click()
             })
         })
@@ -62,7 +64,7 @@ $(function() {
                 }
                 layer.msg('登录成功!', { icon: 1, time: 1000 }, function() {
                     // 将后续调用接口所需的token存储在localStorage中
-                    localStorage.setItem('token', res.token)
+                    sessionStorage.setItem('token', res.token)
                         // 登录成功以后跳转到后台首页
                     location.href = '/index.html'
                 })

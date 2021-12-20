@@ -7,7 +7,7 @@ $(function() {
         // 提示用户是否确认退出
         layer.confirm('是否退出登录?', { icon: 3, title: '提示' }, (index) => {
             // 清空本都存储的token
-            localStorage.removeItem('token')
+            sessionStorage.removeItem('token')
                 // 跳转到登录页面
             location.href = '/login.html'
 
@@ -31,8 +31,8 @@ function getUserInfo() {
             }
 
             // 渲染用户头像
-            $('.welcome').html('欢迎&nbsp;&nbsp;' + res.data.username || res.data.nickname)
-            var firstName = res.data.username.slice(0, 1)
+            $('.welcome').html('欢迎&nbsp;&nbsp;' + res.data.nickname || res.data.username)
+            var firstName = res.data.nickname.slice(0, 1) || res.data.username.slice(0, 1)
             $('.worduser').html(firstName.toUpperCase())
             if (res.data.user_pic !== null) {
                 $('.layui-nav-img').attr('src', res.data.user_pic).show();
