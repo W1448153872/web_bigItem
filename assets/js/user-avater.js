@@ -26,7 +26,8 @@ $(function() {
         var img = e.target.files[0]
             // 将文件转化为路径
         var newImgURL = URL.createObjectURL(img)
-            // 重新初始化裁剪区域
+        console.log(newImgURL);
+        // 重新初始化裁剪区域
         $image
             .cropper('destroy') //销毁旧的裁剪区域
             .attr('src', newImgURL) //重新设置图片路径

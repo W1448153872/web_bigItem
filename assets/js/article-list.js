@@ -87,9 +87,8 @@ $(function() {
 
     // 定义渲染分页方法
     function renderPage(total) {
-        console.log(laypage);
         laypage.render({
-            ele: 'pageBox', //分页容器的id
+            elem: 'pageBox', //分页容器的id
             count: total, //数据总条数
             limit: query.pagesize, //每页显示的条数
             curr: query.pagenum, //设置默认选中页
@@ -114,7 +113,7 @@ $(function() {
 
 
     // 通过代理的形式，为删除按钮绑定点击事件处理函数
-    $('tbody').on('#delete', function() {
+    $('tbody').on('click', '#delete', function() {
         // 获取到文章的id
         var id = $(this).attr('data-id')
             // 获取页面中删除按钮的个数
@@ -139,5 +138,24 @@ $(function() {
                 }
             })
         })
+    })
+
+    // 通过代理的形式，为编辑按钮绑定点击事件处理函数
+    $('tbody').on('click', '#edit', function() {
+        // 获取文章的id
+        var id = $(this).attr('data-id')
+            // 携带参数跳转页面
+        location.href = `/article/publish.html?id=${id}`
+            // 根据id获取文章详情
+            // $.ajax({
+            //     method: 'GET',
+            //     url: '/my/article/' + id,
+            //     success: (res) => {
+            //         if (res.status !== 0) {
+            //             return layer.msg('文章详情获取失败!', { icon: 2 })
+            //         }
+            //         location.href = '/article/publish.html'
+            //     }
+            // })
     })
 })
